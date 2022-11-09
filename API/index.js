@@ -1,6 +1,7 @@
 const express = require('express');
 const placesRoutes = require('./src/places/routes');
 const publicationsRoutes = require('./src/publications/routes');
+const usersRoutes = require('./src/users/routes');
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.get('', function(req, res ){
 });
 
 app.use(placesRoutes);
+app.use(usersRoutes);
 
 app.listen(port, () => {
     console.log('api is running in port', port);
