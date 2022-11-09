@@ -13,7 +13,6 @@ app.get('/', function(req, res ){
 
 app.use(placesRoutes);
 app.use(usersRoutes);
-
 app.use(publicationsRoutes);
 
 app.listen(port, () => {
