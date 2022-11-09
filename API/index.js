@@ -6,13 +6,13 @@ const app = express();
 
 const port = 3000;
 
-app.use(publicationsRoutes);
-
-app.get('', function(req, res ){
-    res.sendFile(_dirname + '/places/index.html');
+app.get('/', function(req, res ){
+    res.send('HOLA MUNDO');
 });
 
 app.use(placesRoutes);
+
+app.use(publicationsRoutes);
 
 app.listen(port, () => {
     console.log('api is running in port', port);
