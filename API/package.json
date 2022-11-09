@@ -2,7 +2,7 @@
   "name": "api",
   "version": "1.0.0",
   "description": "API de Top Trip",
-  "main": "index.js",
+  "main": "api/index.js",
   "scripts": {
     "start": "node .",
     "dev": "nodemon ."

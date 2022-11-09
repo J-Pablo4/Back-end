@@ -3,7 +3,7 @@ const controller = {
     create: (req, res) => {},
     update: (req, res) => {},
     list: (req, res) => {
-        res.send('endpooint places');
+        res.send('endpoint de places');
     },
     get: (req, res) => {},
     delete: (req, res) => {},
