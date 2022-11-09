@@ -1,7 +1,6 @@
 const router = require('express').Router();
+const controller = require('./controllers');
 
-router.get('/publications', function(req, res){
-    res.send('endpoint de publications');
-});
+router.get('/publications', controller.list);
 
 module.exports = router;
