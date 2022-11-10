@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
-const placesRoutes = require('../src/places/routes');
-const publicationsRoutes = require('../src/publications/routes');
-const usersRoutes = require('../src/users/routes');
+const placesRoutes = require('./places/routes');
+const publicationsRoutes = require('./publications/routes');
+const usersRoutes = require('./users/routes');
 const rentalsRoutes = require('../src/rentals/routes');
 
 router.use('/', placesRoutes);
