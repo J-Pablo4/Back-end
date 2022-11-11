@@ -5,10 +5,10 @@ const publicationsRoutes = require('./publications/routes');
 const usersRoutes = require('./users/routes');
 const rentalsRoutes = require('../src/rentals/routes');
 
-router.use('/', placesRoutes);
-router.use('/', publicationsRoutes);
-router.use('/', usersRoutes);
-router.use('/', rentalsRoutes);
+router.use('/places', placesRoutes);
+router.use('/publications', publicationsRoutes);
+router.use('/users', usersRoutes);
+router.use('/rentals', rentalsRoutes);
 
 module.exports = router;
 

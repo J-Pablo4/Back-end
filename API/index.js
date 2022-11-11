@@ -4,13 +4,16 @@ const apiRoutes = require('./src/api');
 
 const app = express();
 
-const port = 3000;
+const port = process.env.PORT || 3000;
+
+
+
+app.use(express.json());
+app.use(apiRoutes);
 
 app.get('/', function(req, res ){
-    res.send('HOLA MUNDO');
+    res.send('api works');
 });
-
-app.use(apiRoutes);
 
 app.listen(port, () => {
     console.log('api is running in port', port);
