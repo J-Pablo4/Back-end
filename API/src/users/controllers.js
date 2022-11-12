@@ -16,14 +16,8 @@ const controller = {
     },
     getOne: (req, res) => {
         const id = req.params.id;
-        const name = req.body.name;
-        const surname = req.body.surname;
-        const email = req.body.email;
-        const password = req.body.password;
-        const rol = req.body.rol;
-        const publications = req.body.publications
 
-        res.send('Endpoint del usuario '+name+' '+surname+' con el id:'+id);
+        res.send('Endpoint del usuario con el id:'+id);
     },
     create: (req, res) => {
         const name = req.body.name;

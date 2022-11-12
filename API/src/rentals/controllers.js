@@ -2,6 +2,11 @@ const controller = {
     list: (req, res) => {
         res.send('endpoint de rentals');
     },
+    getOne: (req, res) => {
+        const id = req.params.id;
+
+        res.send('se obtuvo el rental con el id: '+id);
+    },
     update: (req, res) => {
         const id = req.params.id;
         const name = req.body.name;
