@@ -1,7 +1,4 @@
 const controller = {
-    list: (req, res) => {
-        res.send('endpoint de users');
-    },
 
     update: (req, res) => {
         const id = req.params.id;
