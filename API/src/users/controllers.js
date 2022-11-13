@@ -22,13 +22,12 @@ const controller = {
         const surname = req.body.surname;
         const email = req.body.email;
         const password = req.body.password;
-        const rol = req.body.rol;
 
         res.send('Se creo el usuario'+name+' '+surname);
     }, 
     log_in: (req, res) => {
-        const email = req.body.email;
-        const password = req.body.password;
+        const email = req.query.email;
+        const password = req.query.password;
 
         res.send('Endpoint de login');
     }

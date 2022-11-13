@@ -30,7 +30,7 @@ const controller = {
         res.send('Se creo la publicacion del usuario que califico a la propiedad con el id '+rental_id);
     },
     comment: (req, res) =>{
-        const id = req.params.id;
+        const id = req.body.id;
         const user = req.body.user;
         const comment = req.body.comment;
 
