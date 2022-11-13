@@ -10,14 +10,24 @@ const controller = {
     },
     publish: (req, res) => {
         const place = req.body.place;
-        const type = req.body.type;
         const photo = req.body.photo;
         const user = req.body.user;
         const description = req.body.description;
-        const date = req.body.date;
         const state = req.body.state;
 
         res.send('Se creo la publicación del usuario '+user);
+    },
+    publish_rental: (req, res) => {
+        const state = req.body.state;
+        const rental_id = req.body.rental_id;
+
+        res.send('Se creo la publicacion de propiedad con el id '+rental_id);
+    },
+    publish_rate: (req, res) => {
+        const state = req.body.state;
+        const rental_id = req.body.rental_id;
+
+        res.send('Se creo la publicacion del usuario que califico a la propiedad con el id '+rental_id);
     },
     comment: (req, res) =>{
         const id = req.params.id;

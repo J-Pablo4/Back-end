@@ -8,6 +8,7 @@ const controller = {
         const password = req.body.password;
         const rol = req.body.rol;
         const publications = req.body.publications
+        const rental_id = req.body.rental_id;
 
         res.send('Se actualizo el usuario '+name+' '+surname+' con el id:'+id);
     },

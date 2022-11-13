@@ -52,6 +52,8 @@ const controller = {
         const comment = req.body.comment;
         const user_rate = req.body.rate;
         const renter = req.body.renter;
+
+        res.send('Se califico la propiedad con el id: '+id);
     }
 }
 
