@@ -54,6 +54,11 @@ const controller = {
         const renter = req.body.renter;
 
         res.send('Se califico la propiedad con el id: '+id);
+    },
+    list_by_place: (req, res) => {
+        const place = req.body.place;
+
+        res.send('endpoint de rentals'+place);
     }
 }
 

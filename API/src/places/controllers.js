@@ -18,7 +18,19 @@ const controller = {
         res.send('Se creo el lugar '+city+' del pais '+country);
     },
     list_by_weather: (req, res) => {
+        const weather = req.body.weather;
+
+        res.send('Endpoint de places con el clima '+weather)
+    },
+    list_by_continent: (req, res) => {
+        const continent = req.body.continent;
         
+        res.send('Endpoint de places del continente '+continent)
+    },
+    list_by_country: (req, res) => {
+        const country = req.body.country;
+
+        res.send('Endpoint de places del pais '+country)
     }
 }
 
