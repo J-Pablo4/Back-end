@@ -7,7 +7,7 @@ const controller = {
         const email = req.body.email;
         const password = req.body.password;
         const rol = req.body.rol;
-        const publications = req.body.publications
+        const publications = req.body.publications;
         const rental_id = req.body.rental_id;
 
         res.send('Se actualizo el usuario '+name+' '+surname+' con el id:'+id);
@@ -30,7 +30,9 @@ const controller = {
         const password = req.query.password;
 
         if(email === "example@outlook.com" && password === "123")
+        {
             res.send('Endpoint de login');
+        }
     }
 }
 
