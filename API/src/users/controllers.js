@@ -29,7 +29,8 @@ const controller = {
         const email = req.query.email;
         const password = req.query.password;
 
-        res.send('Endpoint de login');
+        if(email === "example@outlook.com" && password === "123")
+            res.send('Endpoint de login');
     }
 }
 
