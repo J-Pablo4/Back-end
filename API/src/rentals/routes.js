@@ -7,6 +7,6 @@ router.put('/:id', controller.update);
 router.put('/:id/book', controller.book);
 router.post('', controller.create)
 router.post('/:id', controller.rate);
-router.get('/:place', controller.list_by_place)
+router.get('/places/:place', controller.list_by_place)
 
 module.exports = router;
