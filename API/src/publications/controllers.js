@@ -1,9 +1,15 @@
 const controller = {
     list: (req, res) => {
-        res.send('endpoint de publications');
+        
+        const state = req.query.state;
+
+        if(state === "active")
+        {
+            res.send('endpoint de publications activos');
+        }
     },
     delete: (req, res) => {
-        const id = req.params.id;
+        const id = req.body.id;
         const state = req.body.state;
 
         res.send('Se elimino la publicación con el id: '+id);
