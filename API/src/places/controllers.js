@@ -28,7 +28,7 @@ const controller = {
 
         if(state === "active")
         {
-            res.send('Endpoint de places activos con el clima '+weather)
+            res.send('Endpoint de places activos con el clima '+weather);
         }
 
     },
@@ -38,7 +38,7 @@ const controller = {
 
         if(state === "active")
         {
-            res.send('Endpoint de places activos del continente '+continent)
+            res.send('Endpoint de places activos del continente '+continent);
         }
     },
     list_by_country: (req, res) => {
@@ -47,7 +47,7 @@ const controller = {
 
         if(state === "active")
         {
-            res.send('Endpoint de places activos del pais '+country)
+            res.send('Endpoint de places activos del pais '+country);
         }
     }
 }
