@@ -1,4 +1,3 @@
-
 const controller = {
     list: (req, res) => {
         const state = req.query.state;
