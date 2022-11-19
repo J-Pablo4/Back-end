@@ -1,16 +1,17 @@
+const model = require('./model')
+
 const controller = {
 
     update: (req, res) => {
         const id = req.params.id;
         const name = req.body.name;
-        const surname = req.body.surname;
         const email = req.body.email;
         const password = req.body.password;
         const rol = req.body.rol;
         const publications = req.body.publications;
         const rental_id = req.body.rental_id;
 
-        res.send('Se actualizo el usuario '+name+' '+surname+' con el id:'+id);
+        res.send('Se actualizo el usuario '+name+' con el id:'+id);
     },
     getOne: (req, res) => {
         const id = req.params.id;
