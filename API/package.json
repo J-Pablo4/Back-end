@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/J-Pablo4/Back-end#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
