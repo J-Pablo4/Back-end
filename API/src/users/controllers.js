@@ -19,14 +19,19 @@ const controller = {
         res.send('Endpoint del usuario con el id:'+id);
     },
     create: (req, res) => {
-        const name = req.body.name;
-        const surname = req.body.surname;
-        const email = req.body.email;
+        const nombre = req.body.nombre;
+        const correo = req.body.correo;
         const password = req.body.password;
 
-        res.send('Se creo el usuario'+name+' '+surname);
+        console.log(req.body);
+
+        model.create({nombre, correo, password}).then((response) => {
+            res.send(response);
+        }).catch((err) =>{
+            res.status(400).send(err);
+        });
     }, 
-    log_in: (req, res) => {
+    logIn: (req, res) => {
         const email = req.query.email;
         const password = req.query.password;
 
