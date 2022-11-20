@@ -13,11 +13,6 @@ const controller = {
 
         res.send('Se actualizo el usuario '+name+' con el id:'+id);
     },
-    getOne: (req, res) => {
-        const id = req.params.id;
-
-        res.send('Endpoint del usuario con el id:'+id);
-    },
     create: (req, res) => {
         const nombre = req.body.nombre;
         const correo = req.body.correo;
