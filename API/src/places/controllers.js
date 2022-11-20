@@ -1,11 +1,6 @@
 const controller = {
     list: (req, res) => {
-        const state = req.query.state;
-
-        if(state === "active")
-        {
-            res.send('endpoint de places activos');
-        }
+        res.send('endpoint de places activos');
     },
     create: (req, res) => {
         const country = req.body.country;
@@ -17,32 +12,17 @@ const controller = {
     },
     list_by_weather: (req, res) => {
 
-        const state = req.query.state;
         const weather = req.params.weather;
-
-        if(state === "active")
-        {
-            res.send('Endpoint de places activos con el clima '+weather);
-        }
+        res.send('Endpoint de places activos con el clima '+weather);
 
     },
     list_by_continent: (req, res) => {
         const continent = req.params.continent;
-        const state = req.query.state;
-
-        if(state === "active")
-        {
-            res.send('Endpoint de places activos del continente '+continent);
-        }
+        res.send('Endpoint de places activos del continente '+continent);
     },
     list_by_country: (req, res) => {
         const country = req.params.country;
-        const state = req.query.state;
-
-        if(state === "active")
-        {
-            res.send('Endpoint de places activos del pais '+country);
-        }
+        res.send('Endpoint de places activos del pais '+country);
     }
 }
 
