@@ -7,12 +7,6 @@ const controller = {
             res.send('endpoint de places activos');
         }
     },
-    delete: (req, res) => {
-        const id = req.params.id;
-        const state = req.body.delete;
-
-        res.send('Se borro el lugar con el id '+id);
-    },
     create: (req, res) => {
         const country = req.body.country;
         const city = req.body.city;

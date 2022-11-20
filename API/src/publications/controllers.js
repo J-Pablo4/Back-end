@@ -1,16 +1,16 @@
 const controller = {
     list: (req, res) => {
         
-        const state = req.query.state;
+        const status = req.query.status;
 
-        if(state === "active")
+        if(status === "active")
         {
             res.send('endpoint de publications activos');
         }
     },
     delete: (req, res) => {
         const id = req.body.id;
-        const state = req.body.state;
+        const status = req.body.status;
 
         res.send('Se elimino la publicación con el id: '+id);
     },
@@ -19,18 +19,18 @@ const controller = {
         const photo = req.body.photo;
         const user = req.body.user;
         const description = req.body.description;
-        const state = req.body.state;
+        const status = req.body.status;
 
         res.send('Se creo la publicación del usuario '+user);
     },
     publish_rental: (req, res) => {
-        const state = req.body.state;
+        const status = req.body.status;
         const rental_id = req.body.rental_id;
 
         res.send('Se creo la publicacion de propiedad con el id '+rental_id);
     },
     publish_rate: (req, res) => {
-        const state = req.body.state;
+        const status = req.body.status;
         const rental_id = req.body.rental_id;
 
         res.send('Se creo la publicacion del usuario que califico a la propiedad con el id '+rental_id);
