@@ -1,3 +1,5 @@
+const model = require('./model');
+
 const controller = {
     list: (req, res) => {
         
