@@ -21,9 +21,14 @@ const controller = {
         const photo = req.body.photo;
         const user = req.body.user;
         const description = req.body.description;
-        const status = req.body.status;
 
-        res.send('Se creo la publicación del usuario '+user);
+        model.create({place, photo, user, description}).then((response) =>
+        {
+            res.send(response);
+        }).catch((err) =>
+        {
+            res.status(400).send(err);
+        });
     },
     publish_rental: (req, res) => {
         const status = req.body.status;
