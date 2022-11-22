@@ -1,4 +1,5 @@
 const model = require('./model');
+const multer = require('multer');
 
 const controller = {
     list: (req, res) => {
@@ -21,6 +22,8 @@ const controller = {
         const photo = req.body.photo;
         const user = req.body.user;
         const description = req.body.description;
+
+        console.log(req.body);
 
         model.create({place, photo, user, description}).then((response) =>
         {
