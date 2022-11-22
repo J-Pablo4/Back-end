@@ -6,7 +6,6 @@ const stayedMiddleware = require('../middlewares/stayed');
 
 router.get('', controller.list);
 router.get('/:id', controller.getOne);
-router.put('/:id', authMiddleware, ownerMiddleware,controller.update);
 router.put('/:id/book', authMiddleware, controller.book);
 router.post('', authMiddleware, controller.create)
 router.post('/:id', authMiddleware, stayedMiddleware, controller.rate);
