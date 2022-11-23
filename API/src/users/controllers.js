@@ -1,4 +1,7 @@
-const model = require('./model')
+const model = require('./model');
+const token = require('../tokens/model');
+const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
 const controller = {
 
@@ -14,26 +17,45 @@ const controller = {
         res.send('Se actualizo el usuario '+name+' con el id:'+id);
     },
     create: (req, res) => {
+
         const nombre = req.body.nombre;
         const correo = req.body.correo;
-        const password = req.body.password;
+        const password = btoa(req.body.password);
 
-        console.log(req.body);
+        const hash = crypto.createHash('sha256').update(password).digest('hex');
 
-        model.create({nombre, correo, password}).then((response) => {
+
+        model.create({nombre, correo, password: hash}).then((response) => {
             res.send(response);
         }).catch((err) =>{
             res.status(400).send(err);
         });
     }, 
     logIn: (req, res) => {
-        const email = req.query.email;
-        const password = req.query.password;
+        const correo = req.body.correo;
+        const password = btoa(req.body.password);
 
-        if(email === "example@outlook.com" && password === "123")
-        {
-            res.send('Endpoint de login');
-        }
+        const hash = crypto.createHash('sha256').update(password).digest('hex');
+
+            
+        model.findOne({correo, password: hash}).then((response) => {
+            const token_string = crypto.createHash('sha256').update(Date.now().toString()).digest('hex');
+            const currentTime = new Date().getTime();
+            const updatedTIme = new Date(currentTime + 24 * 60 * 60 * 1000);
+
+            token.create({user_id: response._id, token: token_string, expiration_date: updatedTIme}).then((response) => {
+
+                console.log(response);
+                res.send(response);
+            }).catch((err) =>{
+                res.status(400).send(err);
+            });
+
+            console.log('Token:',token);
+        }).catch((err) =>{
+            console.log(err)
+            res.status(400).send(err);
+        });
     }
 }
 

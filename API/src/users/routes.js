@@ -4,6 +4,6 @@ const authMiddleware = require('../middlewares/auth');
 
 router.put('/:id', authMiddleware, controller.update);
 router.post('/sign_up', controller.create);
-router.get('', controller.logIn);
+router.post('/log_in', controller.logIn);
 
 module.exports = router;

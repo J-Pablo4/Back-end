@@ -1,5 +1,17 @@
 const { Schema, model} = require('mongoose');
 
+// const schema_comments = new Schema({
+//     user:{
+//         type: Schema.Types.ObjectId
+//     },
+//     comment:{
+//         type: String
+//     },
+//     date:{
+//         type: Date
+//     }
+// });
+
 const schema = new Schema({
     place: {
         type: String
@@ -7,7 +19,7 @@ const schema = new Schema({
     photo: {
         type: String
     },
-    user: {
+    user_name: {
         type: String
     },
     description:{
@@ -18,8 +30,7 @@ const schema = new Schema({
         default: 1
     },
     comments: {
-        type: String,
-        default: ""
+        type: Schema.Types.Mixed
     }
 });
 
