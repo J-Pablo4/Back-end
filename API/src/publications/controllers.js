@@ -19,12 +19,14 @@ const controller = {
     },
     publish: (req, res) => {
         console.log(req.file);
-        res.send('Llego');
+        
         const place = req.body.place;
         const photo = req.file.path;
         const user = req.user;
         const description = req.body.description;
         const rate = req.body.rate || null;
+
+        res.send('Llego');
 
         model.create({place, photo, user, description, rate}).then((response) =>
         {
