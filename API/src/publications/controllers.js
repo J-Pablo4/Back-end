@@ -18,14 +18,15 @@ const controller = {
         res.send('Se elimino la publicación con el id: '+id);
     },
     publish: (req, res) => {
+        console.log(req.file);
+        res.send('Llego');
         const place = req.body.place;
-        const photo = req.body.photo;
-        const user = req.body.user;
+        const photo = req.file.path;
+        const user = req.user;
         const description = req.body.description;
+        const rate = req.body.rate || null;
 
-        console.log(req.body);
-
-        model.create({place, photo, user, description}).then((response) =>
+        model.create({place, photo, user, description, rate}).then((response) =>
         {
             res.send(response);
         }).catch((err) =>
@@ -37,13 +38,21 @@ const controller = {
         const status = req.body.status;
         const rental_id = req.body.rental_id;
 
-        res.send('Se creo la publicacion de propiedad con el id '+rental_id);
+        // res.send('Se creo la publicacion de propiedad con el id '+rental_id);
     },
-    publish_rate: (req, res) => {
+    publish_rate: (req, res, next) => {
         const status = req.body.status;
         const rental_id = req.body.rental_id;
 
-        res.send('Se creo la publicacion del usuario que califico a la propiedad con el id '+rental_id);
+        rental.update(
+            { _id: person._id }, 
+            { $push: { friends: friend } },
+            done
+        );
+
+        // res.send('Se creo la publicacion del usuario que califico a la propiedad con el id '+rental_id);
+
+        next();
     },
     comment: (req, res) =>{
         const id = req.body.id;
