@@ -12,6 +12,7 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use(apiRoutes);
+app.use('/', express.static(__dirname + '/public/uploads'));
 
 const uri = 'mongodb+srv://ITESO2022:fKsEI9EjOz82JkAL@cluster0.waa3jjj.mongodb.net/Top_TripDB?retryWrites=true&w=majority';
 
