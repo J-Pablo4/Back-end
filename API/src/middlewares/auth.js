@@ -1,4 +1,5 @@
 const token_DB = require('../tokens/model');
+const user = require('../users/model');
 
 function authMiddleware(req, res, next)
 {
@@ -12,10 +13,20 @@ function authMiddleware(req, res, next)
 
         if(currentTime <= token_time)
         {
-            next();
+            const user_id = respuesta.user_id;
+            user.findOne({_id: user_id}).then((respond) => {
+                const user_name = respond.nombre;
+
+                req.user = user_name;
+                next();
+
+            }).catch((err) => {
+                res.status(400).send(err);
+            });
         }
     }).catch((err) => {
-        res.status(400).send('err');
+        console.log('NOOOOOO Llego');
+        res.status(400).send(err);
     });
 }
 module.exports = authMiddleware;
