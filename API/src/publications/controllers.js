@@ -23,16 +23,19 @@ const controller = {
     },
     publish: (req, res) => {
         console.log(req.file);
+
+        // console.log(req);
         
         const place = req.body.place;
         const photo = req.file.path;
-        const user = req.user;
+        console.log(photo);
+        const user_name = req.user;
         const description = req.body.description;
         const rate = req.body.rate || null;
 
-        res.send('Llego');
+        console.log('Llego al controller de publish');
 
-        model.create({place, photo, user, description, rate}).then((response) =>
+        model.create({place, photo, user_name, description, rate}).then((response) =>
         {
             res.send(response);
         }).catch((err) =>
@@ -51,7 +54,7 @@ const controller = {
         const rental_id = req.body.rental_id;
 
         // rental.update(
-        //     { _id: person._id }, 
+        //     { _id: person._id },
         //     { $push: { friends: friend } },
         //     done
         // );
