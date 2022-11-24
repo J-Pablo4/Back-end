@@ -1,15 +1,19 @@
 const model = require('./model');
 const multer = require('multer');
+const slash = require('slash');
 
 const controller = {
     list: (req, res) => {
-        
-        const status = req.query.status;
 
-        if(status === "active")
-        {
-            res.send('endpoint de publications activos');
-        }
+        model.find({status: 1}).then((response) => {
+
+            response.forEach((element) => {
+                element.photo = slash(element.photo);
+            });
+            res.send(response);
+        }).catch((err) => {
+            console.log(err);
+        });
     },
     delete: (req, res) => {
         const id = req.body.id;
@@ -46,11 +50,11 @@ const controller = {
         const status = req.body.status;
         const rental_id = req.body.rental_id;
 
-        rental.update(
-            { _id: person._id }, 
-            { $push: { friends: friend } },
-            done
-        );
+        // rental.update(
+        //     { _id: person._id }, 
+        //     { $push: { friends: friend } },
+        //     done
+        // );
 
         // res.send('Se creo la publicacion del usuario que califico a la propiedad con el id '+rental_id);
 
