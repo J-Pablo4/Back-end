@@ -9,7 +9,6 @@ router.get('', controller.list);
 router.get('/:id', controller.getOne);
 router.put('/:id/book', authMiddleware, controller.book);
 router.post('', authMiddleware, upload.single('photo'), controller.create);
-
 router.post('/:id', authMiddleware, stayedMiddleware, upload.single('photo'),controller.rate);
 router.get('/places/:place', controller.list_by_place);
 

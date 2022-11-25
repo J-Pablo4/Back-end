@@ -1,41 +1,37 @@
 const {Schema, model} = require('mongoose');
 
 const schema = new Schema({
-    nombre: {
-        type: String
-    },
-    direction: {
-        type: String
-    },
-    owner: {
-        type: String
-    },
-    description:{
-        type: String,
-    },
-    status: {
-        type: Number,
-        default: 1
-    },
-    rates: {
-        type: Schema.Types.Mixed
-    },
-    type_rental: {
+    type: {
         type: String
     },
     category: {
         type: String
     },
-    area_number:{
+    user_name: {
+        type: String
+    },
+    accommodation_name:{
+        type: String,
+    },
+    maximum_guests: {
+        type: Number,
+    },
+    country: {
+        type: Schema.Types.Mixed
+    },
+    street_address: {
+        type: String
+    },
+    postal_code: {
+        type: String
+    },
+    city:{
+        type: String
+    },
+    number_of_bedrooms:{
         type: Number
     },
-    bed_number:{
-        type: Number
-    },
-    max_guest:{
-        type: Number
-    },
-    renter:{
+    description:{
         type: String
     },
     photo:{
@@ -44,12 +40,9 @@ const schema = new Schema({
     price:{
         type: Number
     },
-    place:{
-        type: String
-    },
-    comments:{
-        type: Schema.Types.Mixed
+    rate:{
+        type: Number
     }
 });
 
-module.exports = model('publications', schema);
+module.exports = model('rentals', schema);

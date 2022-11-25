@@ -1,3 +1,7 @@
+const model = require('./model');
+const user_model = require('../users/model');
+const token_DB = require('../tokens/model');
+
 const controller = {
     list: (req, res) => {
         res.send('endpoint de rentals');
@@ -15,21 +19,38 @@ const controller = {
         res.send('Se rento la propiedad con el id: '+id+' por el usuario '+renter);
     },
     create: (req, res) =>{
-        const type = req.body.type; 
-        const category = req.body.category; 
-        const name = req.body.name; 
-        const max_person_number = req.body.max_person_number; 
-        const address = req.body.address; 
-        const area_num = req.body.area_num;
-        const bed_num = req.body.bed_num; 
-        const amenities = req.body.amenities;
+        const type = req.body.type;
+        const category = req.body.category;
+        const user_name = req.user;
+        const accommodation_name = req.body.accommodation_name;
+        const maximum_guests = req.body.maximum_guests;
+        const country = req.body.country;
+        const street_address = req.body.street_address;
+        const postal_code = req.body.postal_code;
+        const city = req.body.city;
+        const number_of_bedrooms = req.body.number_of_bedrooms;
         const description = req.body.description;
-        const photo = req.body.photo;
+        const photo = req.file.path;
         const price = req.body.price;
-        const place = req.body.place;
-        const owner = req.body.owner;
+        const rate = req.body.rate || null;
+        const token = req.query.token;
 
-        req.send('Se puso en renta la propiedad '+name);
+        model.create({type, category, user_name, accommodation_name, maximum_guests, country, street_address, postal_code, city, number_of_bedrooms, description, photo, price, rate}).then((response) =>
+        {
+            token_DB.findOne({token}).then((respuesta) => {
+                const user_id = respuesta.user_id;
+                user_model.findOneAndUpdate({_id: user_id}, {rol: 'owner'}, {returnOriginal: false}).then((resp) => {
+                    res.send(resp);
+                }).catch((err) => {
+                    res.status(400).send(err);
+                });
+            }).catch((err) => {
+                res.status.send(err);
+            });
+        }).catch((err) =>
+        {
+            res.status(400).send(err);
+        });
     },
     rate: (req, res) =>{
         const id = req.params.id;
