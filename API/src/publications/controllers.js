@@ -1,5 +1,4 @@
 const model = require('./model');
-const multer = require('multer');
 const slash = require('slash');
 
 const controller = {
@@ -22,20 +21,12 @@ const controller = {
         res.send('Se elimino la publicación con el id: '+id);
     },
     publish: (req, res) => {
-        console.log(req.file);
-
-        // console.log(req);
-        
         const place = req.body.place;
         const photo = req.file.path;
-        console.log(photo);
         const user_name = req.user;
         const description = req.body.description;
-        const rate = req.body.rate || null;
 
-        console.log('Llego al controller de publish');
-
-        model.create({place, photo, user_name, description, rate}).then((response) =>
+        model.create({place, photo, user_name, description}).then((response) =>
         {
             res.send(response);
         }).catch((err) =>

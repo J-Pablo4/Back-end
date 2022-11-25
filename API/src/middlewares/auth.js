@@ -23,9 +23,11 @@ function authMiddleware(req, res, next)
             }).catch((err) => {
                 res.status(400).send(err);
             });
+        }else
+        {
+            res.status(400).send('el token vencio');
         }
     }).catch((err) => {
-        console.log('NOOOOOO Llego');
         res.status(400).send(err);
     });
 }
