@@ -1,14 +1,12 @@
+const model = require('./model');
+
 const controller = {
     list: (req, res) => {
-        res.send('endpoint de places activos');
-    },
-    create: (req, res) => {
-        const country = req.body.country;
-        const city = req.body.city;
-        const continent = req.body.continent;
-        const weather = req.body.weather;
-
-        res.send('Se creo el lugar '+city+' del pais '+country);
+        model.find({}).then((response) => {
+            res.send(response);
+        }).catch((err) => {
+            res.status(400).send(err);
+        });
     },
     list_by_weather: (req, res) => {
 
