@@ -1,10 +1,18 @@
 const model = require('./model');
 const user_model = require('../users/model');
 const token_DB = require('../tokens/model');
+const slash = require('slash');
 
 const controller = {
     list: (req, res) => {
-        res.send('endpoint de rentals');
+        model.find({}).then((response) => {
+            response.forEach((element) => {
+                element.photo = slash(element.photo);
+            });
+            res.send(response);
+        }).catch((err) => {
+            res.status(400).send(err);
+        });
     },
     getOne: (req, res) => {
         const id = req.params.id;

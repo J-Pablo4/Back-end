@@ -11,7 +11,7 @@ const controller = {
             });
             res.send(response);
         }).catch((err) => {
-            console.log(err);
+            res.status(400).send(err);
         });
     },
     delete: (req, res) => {
