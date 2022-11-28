@@ -1,6 +1,7 @@
 const model = require('./model');
 const user_model = require('../users/model');
 const token_DB = require('../tokens/model');
+const publications = require('../publications/model');
 const slash = require('slash');
 
 const controller = {
@@ -26,7 +27,7 @@ const controller = {
 
         res.send('Se rento la propiedad con el id: '+id+' por el usuario '+renter);
     },
-    create: (req, res) =>{
+    create: (req, res, next) =>{
         const type = req.body.type;
         const category = req.body.category;
         const user_name = req.user;
@@ -48,12 +49,13 @@ const controller = {
             token_DB.findOne({token}).then((respuesta) => {
                 const user_id = respuesta.user_id;
                 user_model.findOneAndUpdate({_id: user_id}, {rol: 'owner'}, {returnOriginal: false}).then((resp) => {
-                    res.send(resp);
+                    req.rental_id = response._id;
+                    next();
                 }).catch((err) => {
                     res.status(400).send(err);
                 });
             }).catch((err) => {
-                res.status.send(err);
+                res.status(400).send(err);
             });
         }).catch((err) =>
         {

@@ -6,6 +6,5 @@ const upload = require('../middlewares/images');
 router.get('', controller.list);
 router.get('/weather/:weather',controller.list_by_weather);
 router.get('/continent/:continent',controller.list_by_continent);
-router.get('/country/:country',controller.list_by_country);
 
 module.exports = router;

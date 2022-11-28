@@ -25,7 +25,7 @@ function authMiddleware(req, res, next)
             });
         }else
         {
-            res.status(400).send('el token vencio');
+            res.status(400).send('el token expiró');
         }
     }).catch((err) => {
         res.status(400).send(err);
