@@ -17,10 +17,6 @@ const controller = {
     list_by_continent: (req, res) => {
         const continent = req.params.continent;
         res.send('Endpoint de places activos del continente '+continent);
-    },
-    list_by_country: (req, res) => {
-        const country = req.params.country;
-        res.send('Endpoint de places activos del pais '+country);
     }
 }
 

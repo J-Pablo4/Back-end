@@ -35,10 +35,18 @@ const controller = {
         });
     },
     publish_rental: (req, res) => {
-        const status = req.body.status;
-        const rental_id = req.body.rental_id;
+        const user_name = req.user;
+        const place = req.body.country;
+        const accommodation_name = req.body.accommodation_name;
+        const photo = req.file.path;
+        const description = req.body.description;
+        const rental_id = req.rental_id;
 
-        // res.send('Se creo la publicacion de propiedad con el id '+rental_id);
+        model.create({place, accommodation_name, photo, user_name, description, rental_id}).then((response) => {
+            res.send(response);
+        }).catch((err) => {
+            res.status(400).send(err);
+        });
     },
     publish_rate: (req, res, next) => {
         const status = req.body.status;
