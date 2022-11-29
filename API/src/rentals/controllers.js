@@ -16,9 +16,14 @@ const controller = {
         });
     },
     getOne: (req, res) => {
-        const id = req.params.id;
+        const _id = req.params.id;
 
-        res.send('se obtuvo el rental con el id: '+id);
+        model.findOne({_id}).then((response) => {
+            response.photo = slash(response.photo);
+            res.send(response);
+        }).catch((err) => {
+            res.status(400).send(err);
+        });
     },
     book: (req, res) => {
         const id = req.params.id;
@@ -71,9 +76,17 @@ const controller = {
         res.send('Se califico la propiedad con el id: '+id);
     },
     list_by_place: (req, res) => {
-        const place = req.params.place;
+        const country = req.params.place;
 
-        res.send('endpoint de rentals en '+place);
+        model.find({country}).then((response) => {
+            console.log(response);
+            response.forEach((element) => {
+                element.photo = slash(element.photo);
+            });
+            res.send(response);
+        }).catch((err) => {
+            res.status(400).send(err);
+        });
     }
 }
 
