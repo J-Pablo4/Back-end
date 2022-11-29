@@ -14,7 +14,7 @@ app.use(express.json());
 app.use('/', express.static(__dirname + '/public/uploads'));
 app.use(apiRoutes);
 
-const uri = 'mongodb+srv://ITESO2022:fKsEI9EjOz82JkAL@cluster0.waa3jjj.mongodb.net/Top_TripDB?retryWrites=true&w=majority';
+
 
 mongoose.connect(uri, (err) => {
     if(!err){
