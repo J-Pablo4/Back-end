@@ -38,20 +38,24 @@ const controller = {
         const hash = crypto.createHash('sha256').update(password).digest('hex');
 
             
-        model.findOne({correo, password: hash}).then((response) => {
+        model.findOne({correo, password: hash}).then((respuesta) => {
             const token_string = crypto.createHash('sha256').update(Date.now().toString()).digest('hex');
             const currentTime = new Date().getTime();
             const updatedTIme = new Date(currentTime + 24 * 60 * 60 * 1000);
 
-            token.create({user_id: response._id, token: token_string, expiration_date: updatedTIme}).then((response) => {
+            if(respuesta != null)
+            {
+                token.create({user_id: respuesta._id, token: token_string, expiration_date: updatedTIme}).then((response) => {
 
-                console.log(response);
-                res.send(response);
-            }).catch((err) =>{
-                res.status(400).send(err);
-            });
-
-            console.log('Token:',token);
+                    console.log(response);
+                    res.send(response);
+                }).catch((err) =>{
+                    res.status(400).send(err);
+                });
+            }else
+            {
+                res.status(400).send(respuesta);
+            }
         }).catch((err) =>{
             console.log(err)
             res.status(400).send(err);

@@ -14,17 +14,12 @@ const controller = {
             res.status(400).send(err);
         });
     },
-    delete: (req, res) => {
-        const id = req.body.id;
-        const status = req.body.status;
-
-        res.send('Se elimino la publicación con el id: '+id);
-    },
     publish: (req, res) => {
         const place = req.body.place;
         const photo = req.file.path;
         const user_name = req.user;
         const description = req.body.description;
+        const comments = [];
 
         model.create({place, photo, user_name, description}).then((response) =>
         {
