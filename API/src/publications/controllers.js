@@ -21,7 +21,7 @@ const controller = {
         const description = req.body.description;
         const comments = [];
 
-        model.create({place, photo, user_name, description}).then((response) =>
+        model.create({place, photo, user_name, description, comments}).then((response) =>
         {
             res.send(response);
         }).catch((err) =>
@@ -36,8 +36,9 @@ const controller = {
         const photo = req.file.path;
         const description = req.body.description;
         const rental_id = req.rental_id;
+        const comments = [];
 
-        model.create({place, accommodation_name, photo, user_name, description, rental_id}).then((response) => {
+        model.create({place, accommodation_name, photo, user_name, description, rental_id, comments}).then((response) => {
             res.send(response);
         }).catch((err) => {
             res.status(400).send(err);
