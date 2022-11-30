@@ -1,5 +1,6 @@
 const model = require('./model');
 const slash = require('slash');
+const { response } = require('express');
 
 const controller = {
     list: (req, res) => {
@@ -21,7 +22,7 @@ const controller = {
         const description = req.body.description;
         const comments = [];
 
-        model.create({place, photo, user_name, description}).then((response) =>
+        model.create({place, photo, user_name, description, comments}).then((response) =>
         {
             res.send(response);
         }).catch((err) =>
@@ -36,33 +37,34 @@ const controller = {
         const photo = req.file.path;
         const description = req.body.description;
         const rental_id = req.rental_id;
+        const comments = [];
 
-        model.create({place, accommodation_name, photo, user_name, description, rental_id}).then((response) => {
+        model.create({place, accommodation_name, photo, user_name, description, rental_id, comments}).then((response) => {
             res.send(response);
         }).catch((err) => {
             res.status(400).send(err);
         });
     },
-    publish_rate: (req, res, next) => {
-        const status = req.body.status;
-        const rental_id = req.body.rental_id;
-
-        // rental.update(
-        //     { _id: person._id },
-        //     { $push: { friends: friend } },
-        //     done
-        // );
-
-        // res.send('Se creo la publicacion del usuario que califico a la propiedad con el id '+rental_id);
-
-        next();
-    },
     comment: (req, res) =>{
-        const id = req.body.id;
-        const user = req.body.user;
-        const comment = req.body.comment;
+        const _id = req.body.publication_id;
 
-        res.send('El usuario '+user+ 'commento '+'"'+comment+'" en la publicacion con id '+id);
+        const comment_values = {
+            user_name: req.user,
+            comment_text: req.body.comment,
+            time: req.body.time
+        };
+
+        model.findOne({_id}).then((respuesta) => {
+            respuesta.comments.push(comment_values);
+
+            model.findOneAndUpdate({_id}, {comments: respuesta.comments}, {returnOriginal: false}).then((resp) => {
+                res.send(resp);
+            }).catch((err) => {
+                res.status(400).send(err);
+            });
+        }).catch((err) => {
+            res.status(400).send(err);
+        });
     }
 }
 
