@@ -17,6 +17,8 @@ app.use(apiRoutes);
 
 const uri = process.env.MONGO_URL;
 
+
+
 mongoose.connect(uri, (err) => {
     if(!err){
         console.log('se conecto a la base de datos');
