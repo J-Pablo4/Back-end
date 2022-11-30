@@ -44,20 +44,6 @@ const controller = {
             res.status(400).send(err);
         });
     },
-    publish_rate: (req, res, next) => {
-        const status = req.body.status;
-        const rental_id = req.body.rental_id;
-
-        // rental.update(
-        //     { _id: person._id },
-        //     { $push: { friends: friend } },
-        //     done
-        // );
-
-        // res.send('Se creo la publicacion del usuario que califico a la propiedad con el id '+rental_id);
-
-        next();
-    },
     comment: (req, res) =>{
         const id = req.body.id;
         const user = req.body.user;
