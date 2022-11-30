@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use('/', express.static(__dirname + '/public/uploads'));
+app.use('/images', express.static(__dirname + '/public/uploads'));
 app.use(apiRoutes);
 
 const uri = process.env.MONGO_URL;
