@@ -1,5 +1,6 @@
 const model = require('./model');
 const slash = require('slash');
+const { response } = require('express');
 
 const controller = {
     list: (req, res) => {
@@ -45,11 +46,25 @@ const controller = {
         });
     },
     comment: (req, res) =>{
-        const id = req.body.id;
-        const user = req.body.user;
-        const comment = req.body.comment;
+        const _id = req.body.publication_id;
 
-        res.send('El usuario '+user+ 'commento '+'"'+comment+'" en la publicacion con id '+id);
+        const comment_values = {
+            user_name: req.user,
+            comment_text: req.body.comment,
+            time: req.body.time
+        };
+
+        model.findOne({_id}).then((respuesta) => {
+            respuesta.comments.push(comment_values);
+
+            model.findOneAndUpdate({_id}, {comments: respuesta.comments}, {returnOriginal: false}).then((resp) => {
+                res.send(resp);
+            }).catch((err) => {
+                res.status(400).send(err);
+            });
+        }).catch((err) => {
+            res.status(400).send(err);
+        });
     }
 }
 
