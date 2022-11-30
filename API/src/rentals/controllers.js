@@ -3,6 +3,7 @@ const user_model = require('../users/model');
 const token_DB = require('../tokens/model');
 const publications = require('../publications/model');
 const slash = require('slash');
+const { response } = require('express');
 
 const controller = {
     list: (req, res) => {
@@ -26,11 +27,16 @@ const controller = {
         });
     },
     book: (req, res) => {
-        const id = req.params.id;
-        const renter = req.body.renter;
-        const date = req.body.date;
+        const _id = req.body.publication_id;
+        const check_in = req.body.check_in;
+        const check_out = req.body.check_out;
+        const maximum_guests = req.body.total;
 
-        res.send('Se rento la propiedad con el id: '+id+' por el usuario '+renter);
+        model.findOneAndUpdate({_id}, {check_in: check_in, check_out: check_out, rented: 1}, {returnOriginal: false}).then((response) => {
+            res.send(response);
+        }).catch((err) => {
+            res.status(400).send(err);
+        });
     },
     create: (req, res, next) =>{
         const type = req.body.type;

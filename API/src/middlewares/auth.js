@@ -18,6 +18,7 @@ function authMiddleware(req, res, next)
                 const user_name = respond.nombre;
 
                 req.user = user_name;
+
                 next();
 
             }).catch((err) => {

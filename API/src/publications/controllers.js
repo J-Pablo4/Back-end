@@ -1,6 +1,5 @@
 const model = require('./model');
 const slash = require('slash');
-const { response } = require('express');
 
 const controller = {
     list: (req, res) => {

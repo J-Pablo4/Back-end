@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const cors = require('cors');
 const mongoose = require('mongoose');
 
@@ -14,7 +15,7 @@ app.use(express.json());
 app.use('/', express.static(__dirname + '/public/uploads'));
 app.use(apiRoutes);
 
-const uri = 'mongodb+srv://ITESO2022:fKsEI9EjOz82JkAL@cluster0.waa3jjj.mongodb.net/Top_TripDB?retryWrites=true&w=majority';
+const uri = process.env.MONGO_URL;
 
 mongoose.connect(uri, (err) => {
     if(!err){

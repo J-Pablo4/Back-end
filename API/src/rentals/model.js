@@ -42,6 +42,18 @@ const schema = new Schema({
     },
     rate:{
         type: Number
+    },
+    rented:{
+        type: Number,
+        default: 0
+    },
+    check_in:{
+        type: Date,
+        default: null
+    },
+    check_out:{
+        type: Date,
+        default: null
     }
 });
 
